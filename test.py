@@ -18,9 +18,9 @@ x = random.randint(0, 10000)
 tries = 0
 
 # valeur à faire deviner
-y = int(input("Saisissez une valeur entre 0 et 10000 : "))
+y = int(input("Saisissez une valeur entre 0 et 10000 : ")) # SI STRING, CA PLANTE
 
-if x != y:
+if x != y: # A QUOI SERT CE IF ?
 	while x != y:
 		if x<y:
 			y = int(input("Saisissez une valeur plus petite : "))
@@ -38,7 +38,7 @@ seconds_2 = dt.timestamp()
 # calcul du temps
 time = abs(seconds_2-seconds_1)
 if time < 60:
-	print ("Vous avec effectuer", tries, "tentatives, en", time, "secondes.")
+	print ("Vous avec effectuer", tries, "tentatives, en", time, "secondes.") # datetime.utcfromtimestamp(time).strftime('%H h %M m et %S')
 elif 60 < time < 3600:
 	print("Vous avec effectuer", tries, "tentatives, en", time/60, "minutes")
 elif time > 3600:
