@@ -52,14 +52,3 @@ seconds_2 = dt.timestamp()
 time = abs(seconds_2-seconds_1)
 time = datetime.utcfromtimestamp(time).strftime('%Hh %Mm et %Ss')
 print ("Vous avec effectuer", tries, "tentatives, en", time, "secondes.")
-
-seconds_2 = dt.timestamp()
-
-# calcul du temps
-time = abs(seconds_2-seconds_1)
-if time < 60:
-	print ("Vous avec effectuer", tries, "tentatives, en", time, "secondes.")
-elif 60 < time < 3600:
-	print("Vous avec effectuer", tries, "tentatives, en", time/60, "minutes")
-elif time > 3600:
-	print("Vous avec effectuer", tries, "tentatives, en", time/3600, "heures")
