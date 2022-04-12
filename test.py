@@ -12,27 +12,47 @@ dt = datetime.today()
 seconds_1 = dt.timestamp()
 
 #nb random
-x = random.randint(0, 10000)	
+x = random.randint(0, 100)    
 
 # nb tries
-tries = 0
+tries = 1
 
 # valeur à faire deviner
-y = int(input("Saisissez une valeur entre 0 et 10000 : "))
+def valid_input(inp):
+    try:
+        ret=int(inp)
+        if not 0<ret<100:
+            print ("Le nombre doit être compris entre 0 et 100 !")
+            return None
+        return ret
+    except:
+        print ("Veuillez saisir un nombre !")
+        return None
 
-if x != y:
-	while x != y:
-		if x<y:
-			y = int(input("Saisissez une valeur plus petite : "))
-			tries = tries+1
-		elif x>y:
-			y = int(input("Saisissez une valeur plus grande : "))
-			tries = tries+1
+while True:
+    y = valid_input(input("Saisissez une valeur entre 0 et 100 : "))
+    if y:break
+
+while x != y:
+    if x<y:
+        y = int(input("Saisissez une valeur plus petite : "))
+        tries = tries+1
+    elif x>y:
+        y = int(input("Saisissez une valeur plus grande : "))
+        tries = tries+1
+
 
 print("Bravo vous avez trouvé !")
 
 #2e time
 dt = datetime.today()
+seconds_2 = dt.timestamp()
+
+# calcul du temps
+time = abs(seconds_2-seconds_1)
+time = datetime.utcfromtimestamp(time).strftime('%Hh %Mm et %Ss')
+print ("Vous avec effectuer", tries, "tentatives, en", time, "secondes.")
+
 seconds_2 = dt.timestamp()
 
 # calcul du temps
