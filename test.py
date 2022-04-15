@@ -1,54 +1,47 @@
-# définir un nombre random ok
-# faire trouver ce nb a qqun ok
-# définir le nb d'essais ok
-# définir le temps mit pour trouver le nb
-
 import random
 import datetime
 from datetime import datetime
 
-#1er time
 dt = datetime.today()
 seconds_1 = dt.timestamp()
 
-#nb random
-x = random.randint(0, 100)    
+class Guesser:
+  
+  def __init__(self):
+    self.min = 0
+    self.max = 100
+    self.x = random.randint(self.min, self.max)
 
-# nb tries
-tries = 1
-
-# valeur à faire deviner
-def valid_input(inp):
+  def valid_input(number):
     try:
-        ret=int(inp)
-        if not 0<ret<100:
+        response=int(number)
+        if not 0<response<100:
             print ("Le nombre doit être compris entre 0 et 100 !")
             return None
-        return ret
+        return response
     except:
         print ("Veuillez saisir un nombre !")
         return None
-
-while True:
-    y = valid_input(input("Saisissez une valeur entre 0 et 100 : "))
-    if y:break
-
-while x != y:
-    if x<y:
-        y = int(input("Saisissez une valeur plus petite : "))
-        tries = tries+1
-    elif x>y:
-        y = int(input("Saisissez une valeur plus grande : "))
-        tries = tries+1
+  while True:
+    number = valid_input(input("Saisissez une nombre entre 0 et 100 : "))
+    if number:break
 
 
-print("Bravo vous avez trouvé !")
+g = Guesser()
+number = g.number
+x = g.x
+tries = 1
+while x != number:
+  if x<number:
+      number = int(input("Saisissez une valeur plus petite : "))
+      tries = tries+1
+  elif x>number:
+      number = int(input("Saisissez une valeur plus grande : "))
+      tries = tries+1
 
-#2e time
+print ("Bravo !")
 dt = datetime.today()
 seconds_2 = dt.timestamp()
-
-# calcul du temps
 time = abs(seconds_2-seconds_1)
 time = datetime.utcfromtimestamp(time).strftime('%Hh %Mm et %Ss')
 print ("Vous avec effectuer", tries, "tentatives, en", time, "secondes.")
